@@ -6,7 +6,7 @@
         <div
             style="text-align: left; margin-bottom: 50px; margin-top: 40px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 400;">
             <h2>Categories</h2>
-        </div>
+       
 
         <!-- Search Form -->
         <div class="row mb-4" style="padding-bottom: 15px;">
@@ -52,9 +52,9 @@
                 <strong><span class="glyphicon glyphicon-th"></span> All Categories</strong>
             </div>
             <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped">
-                        <thead>
+                <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                    <table class="table table-bordered table-striped" style="margin-bottom: 0;">
+                        <thead class="bg-light" style="position: sticky; top: 0; z-index: 1; background-color: white;">
                             <tr>
                                 <th class="text-center" style="width: 5%;">#</th>
                                 <th style="width: 45%;">Category Name</th>
@@ -84,21 +84,17 @@
                                             aria-controls="products{{ $category->id }}">
                                             View Products
                                         </button>
-
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="4" style="padding: 0;">
                                         <div class="collapse" id="products{{ $category->id }}" style="padding: 15px;">
-                                            @php
-                                                $products = $category->products;
-                                            @endphp
+                                            @php $products = $category->products; @endphp
                                             @if($products->isEmpty())
                                                 <p class="text-center text-muted">No products in this category.</p>
                                             @else
                                                 <table class="table table-bordered table-hover"
                                                     style="background-color:rgb(231, 231, 231);">
-
                                                     <thead>
                                                         <tr>
                                                             <th>#</th>
@@ -120,13 +116,14 @@
                                         </div>
                                     </td>
                                 </tr>
-
                             @endforeach
                         </tbody>
                     </table>
                 </div>
+
             </div>
         </div>
+    </div>
     </div>
 
     <!-- Delete Confirmation Modals -->

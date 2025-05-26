@@ -14,9 +14,6 @@
                     <span class="glyphicon glyphicon-th"></span>
                     <span>Expired Products</span>
                 </strong>
-                <a href="{{ route('products.index') }}" class="btn btn-primary btn-sm pull-right">
-                    <i class="glyphicon glyphicon-arrow-left"></i> Back to All Products
-                </a>
             </div>
 
             <div class="panel-body" style="padding: 30px;">

@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Sale;
 use Carbon\Carbon; // For date manipulation
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class SalesReportController extends Controller
 {
     // Show the form for generating the sales report
     public function index()
-    {   
+    {
         return view('sales.report');
     }
 
@@ -40,12 +42,12 @@ class SalesReportController extends Controller
         return view('sales.report_result', compact('sales', 'startDate', 'endDate'));
     }
 
-    
+
     public function dailyReport(Request $request)
     {
         // Fetch sales for the daily report
         $date = $request->input('date');
-        
+
         // Assuming you have a Sale model and a relationship between sales and date
         $sales = Sale::whereDate('date', $date)->get();
 
@@ -70,6 +72,20 @@ class SalesReportController extends Controller
 
         // Return the results to the view
         return view('sales.report_result', compact('sales', 'request'));
+    }
+
+
+    public function downloadPDF(Request $request)
+    {
+        $startDate = $request->query('startDate');
+        $endDate = $request->query('endDate');
+
+        $sales = \App\Models\Sale::with('product')
+            ->whereBetween('date', [$startDate, $endDate])
+            ->get();
+
+        $pdf = Pdf::loadView('sales.sales_pdf', compact('sales', 'startDate', 'endDate'));
+        return $pdf->download('sales_report_' . now()->format('Ymd_His') . '.pdf');
     }
 }
 

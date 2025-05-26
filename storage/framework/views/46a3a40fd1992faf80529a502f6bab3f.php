@@ -17,7 +17,7 @@
         </div>
 
         <div
-            style="display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 20px; justify-content: center; margin-bottom: 20px;">
+            style="display: flex; flex-wrap: nowrap;  gap: 20px; justify-content: center; margin-bottom: 20px;">
             <!-- Expired Items -->
             <a href="<?php echo e(route('products.expired')); ?>" style="color:black; min-width: 300px;">
                 <div class="panel panel-box clearfix custom-panel">
@@ -97,7 +97,7 @@
                         <div class="panel-heading bg-primary text-white text-center py-2">
                             <strong>Highest Selling Products</strong>
                         </div>
-                        <div class="panel-body overflow-auto" style="height: 500px; overflow-y: auto;">
+                        <div class="panel-body overflow-auto" style="height: 490px; overflow-y: auto;">
                             <table class="table table-sm table-bordered mb-0">
                                 <thead>
                                     <tr>
@@ -130,7 +130,7 @@
                         <div class="panel-heading bg-success text-white text-center py-2">
                             <strong>Latest Sales</strong>
                         </div>
-                        <div class="panel-body overflow-auto" style="height: 500px; overflow-y: auto;">
+                        <div class="panel-body overflow-auto" style="height: 490px; overflow-y: auto;">
                             <table class="table table-sm table-bordered mb-0">
                                 <thead>
                                     <tr>
@@ -144,8 +144,10 @@
                                     <?php $__empty_1 = true; $__currentLoopData = $recent_sales; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $recent_sale): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                         <tr>
                                             <td class="text-center"><?php echo e($loop->iteration); ?></td>
-                                            <td><a
-                                                    href="<?php echo e(route('sales.edit', $recent_sale->id)); ?>"><?php echo e($recent_sale->product->name); ?></a>
+                                            <td>
+                                                   <?php echo e($recent_sale->product->name); ?>
+
+
                                             </td>
                                             <td><?php echo e(\Carbon\Carbon::parse($recent_sale->date)->format('Y-m-d')); ?></td>
                                             <td>₱<?php echo e($recent_sale->price); ?></td>
@@ -160,21 +162,21 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Recently Added Products -->
                 <div class="col-md-6 col-lg-3 mb-4">
                     <div class="panel panel-warning h-100 d-flex flex-column">
                         <div class="panel-heading bg-warning text-dark text-center py-2">
                             <strong>Recently Added Products</strong>
                         </div>
-                        <div class="panel-body overflow-auto" style="height: 500px;  overflow-y: auto;">
+                        <div class="panel-body overflow-auto" style="height: 490px;  overflow-y: auto;">
                             <div class="list-group">
                                 <?php $__empty_1 = true; $__currentLoopData = $recent_products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $recent_product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                     <a class="list-group-item d-flex align-items-center"
-                                        href="<?php echo e(route('products.edit', $recent_product->id)); ?>" style="overflow: visible;">
-                                        <span
+                                       ><span
                                             class="badge bg-warning text-dark me-2 flex-shrink-0">₱<?php echo e($recent_product->sale_price); ?></span>
 
-                                        <img src="<?php echo e(isset($recent_product->media) ? asset('uploads/products/' . $recent_product->media->file_name) : asset('uploads/products/no_image.png')); ?>"
+                                        <img src="<?php echo e(isset($recent_product->media) ? asset('lib/products/' . $recent_product->media->file_name) : asset('lib/products/')); ?>"
                                             class="img-thumbnail me-2 flex-shrink-0" width="40" height="40" alt="">
 
                                         <div class="flex-grow-1" style="min-width: 0;">
@@ -196,13 +198,15 @@
                         <div class="panel-heading bg-danger text-white text-center py-2">
                             <strong>Low Stock Items</strong>
                         </div>
-                        <div class="panel-body overflow-auto" style="height: 500px; overflow-y: auto;">
+                        <div class="panel-body overflow-auto" style="height: 490px; overflow-y: auto;">
                             <ul class="list-group">
                                 <?php if($lowStockProducts->isNotEmpty()): ?>
                                     <?php $__currentLoopData = $lowStockProducts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <?php if($product->quantity > 0): ?> <!-- Ensure it doesn't display products with 0 quantity -->
                                             <li class="list-group-item d-flex justify-content-start align-items-center">
-                                                <span class="badge badge-danger badge-pill me-3"><?php echo e($product->quantity); ?></span>
+                                                <span class="badge badge-danger badge-pill me-3">Stock: <?php echo e($product->quantity); ?></span>
+                                                <img src="<?php echo e(isset($recent_product->media) ? asset('lib/products/' . $recent_product->media->file_name) : asset('lib/products/')); ?>"
+                                            class="img-thumbnail me-2 flex-shrink-0" width="40" height="40" alt="">
                                                 <div>
                                                     <strong><?php echo e($product->name); ?></strong><br>
                                                     <small class="text-muted"><?php echo e($product->category->name ?? 'N/A'); ?></small>

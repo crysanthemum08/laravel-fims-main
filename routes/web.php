@@ -90,7 +90,7 @@ Route::middleware(['auth'])->group(function () {
 // Sale Routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/sales', [SaleController::class, 'index'])->name('sales.index');
-
+    Route::get('/sales-report/pdf', [App\Http\Controllers\SalesReportController::class, 'downloadPDF'])->name('sales.report.pdf');
     Route::get('/sales/create', [SaleController::class, 'create'])->name('sales.create');
     Route::post('/sales', [SaleController::class, 'store'])->name('sales.store');
     Route::get('sales/{id}/edit', [SaleController::class, 'edit'])->name('sales.customEdit');

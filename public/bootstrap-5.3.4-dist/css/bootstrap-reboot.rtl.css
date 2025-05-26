@@ -348,7 +348,7 @@ sup {
 }
 
 a {
-  color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+  color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 0.25));
   text-decoration: underline;
 }
 a:hover {
@@ -475,7 +475,7 @@ select {
   word-wrap: normal;
 }
 select:disabled {
-  opacity: 1;
+  opacity: 0.25;
 }
 
 [list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator {

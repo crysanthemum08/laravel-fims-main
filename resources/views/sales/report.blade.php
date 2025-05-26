@@ -17,7 +17,7 @@
     
     <div class="report-custom-col-md-12">
         
-        <div class="panel">
+        <div class="grpanel">
             
             <div class="panel-heading">
                 <h4>Generate Sales Report</h4>

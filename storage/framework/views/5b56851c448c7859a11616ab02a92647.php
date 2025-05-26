@@ -18,7 +18,7 @@
                     <div class="alert alert-info"><?php echo e(session('msg')); ?></div>
                 <?php endif; ?>
 
-                <div class="table-responsive">
+                <div class="table-responsive" >
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>

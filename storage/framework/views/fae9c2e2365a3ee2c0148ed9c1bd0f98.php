@@ -14,9 +14,6 @@
                     <span class="glyphicon glyphicon-th"></span>
                     <span>Expired Products</span>
                 </strong>
-                <a href="<?php echo e(route('products.index')); ?>" class="btn btn-primary btn-sm pull-right">
-                    <i class="glyphicon glyphicon-arrow-left"></i> Back to All Products
-                </a>
             </div>
 
             <div class="panel-body" style="padding: 30px;">
@@ -38,34 +35,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $__empty_1 = true; $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                                <tr class="table-danger">
-                                    <td class="text-center"><?php echo e($loop->iteration); ?></td>
-                                    <td class="text-center">
-                                        <?php if($product->media && $product->media->file_name): ?>
-                                            <img src="<?php echo e(asset('lib/products/' . $product->media->file_name)); ?>" alt="Product Photo" style="height: 80px; width: auto;">
-                                        <?php else: ?>
-                                            <img class="img-avatar img-circle" src="<?php echo e(asset('uploads/products/default.png')); ?>" alt="No Image Available" style="height: 80px; width: auto;">
-                                        <?php endif; ?>
-                                    </td>
-                                    <td><?php echo e($product->name); ?></td>
-                                    <td class="text-center"><?php echo e($product->category->name ?? 'N/A'); ?></td>
-                                    <td class="text-center"><?php echo e($product->quantity); ?></td>
-                                    <td class="text-center"><?php echo e($product->buy_price); ?></td>
-                                    <td class="text-center"><?php echo e($product->sale_price); ?></td>
-                                    <td class="text-center"><?php echo e($product->date->toFormattedDateString()); ?></td>
-                                    <td class="text-center">
-                                        <?php echo e($product->expiry_date ? $product->expiry_date->toFormattedDateString() : 'N/A'); ?>
+                        <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <tr class="<?php echo e($product->expiry_date && $product->expiry_date < now() ? 'table-danger' : ''); ?>">
+                                <td class="text-center"><?php echo e($loop->iteration); ?></td>
+                                <td class="text-center">
+                                    <?php if($product->media && $product->media->file_name): ?>
+                                        <img src="<?php echo e(asset('lib/products/' . $product->media->file_name)); ?>" alt="Product Photo" style="height: 80px; width: auto;">
+                                    <?php else: ?>
+                                        <img class="img-avatar img-circle" src="<?php echo e(asset('uploads/products/default.png')); ?>" alt="No Image Available" style="height: 80px; width: auto;">
+                                    <?php endif; ?>
+                                </td>
+                                <td><?php echo e($product->name); ?></td>
+                                <td class="text-center"><?php echo e($product->category->name ?? 'N/A'); ?></td>
+                                <td class="text-center"><?php echo e($product->quantity); ?></td>
+                                <td class="text-center"><?php echo e($product->buy_price); ?></td>
+                                <td class="text-center"><?php echo e($product->sale_price); ?></td>
+                                <td class="text-center"><?php echo e($product->date->toFormattedDateString()); ?></td>
+                                <td class="text-center">
+                                    <?php echo e($product->expiry_date ? $product->expiry_date->toFormattedDateString() : 'N/A'); ?>
 
-                                        <br>
+                                    <br>
+                                    <?php if($product->expiry_date && $product->expiry_date < now()): ?>
                                         <span class="badge" style="background-color: red; color: white;">Expired</span>
-                                    </td>
-                                </tr>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                                <tr>
-                                    <td colspan="10" class="text-center">No expired products found.</td>
-                                </tr>
-                            <?php endif; ?>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
                         </tbody>
                     </table>
                 </div>
@@ -98,5 +94,4 @@
         </div>
     </div>
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\xampp\htdocs\laravel-fims-main\resources\views/products/expired.blade.php ENDPATH**/ ?>

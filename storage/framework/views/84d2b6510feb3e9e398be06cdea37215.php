@@ -12,9 +12,6 @@
                     <span class="glyphicon glyphicon-th"></span>
                     <span>Out of Stock Products</span>
                 </strong>
-                <a href="<?php echo e(route('products.index')); ?>" class="btn btn-default btn-sm pull-right">
-                    <i class="glyphicon glyphicon-arrow-left"></i> Back to All Products
-                </a>
             </div>
 
             <div class="panel-body" style="padding: 30px;">

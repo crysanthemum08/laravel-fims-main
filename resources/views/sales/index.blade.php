@@ -141,7 +141,7 @@
 
                 <div class="modal-header">
                     <h5 class="modal-title">Add Sale</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
+             
                 </div>
 
                 <form method="POST" action="{{ route('sales.store') }}">

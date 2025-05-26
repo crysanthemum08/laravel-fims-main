@@ -98,7 +98,7 @@
                         <div class="panel-heading bg-primary text-white text-center py-2">
                             <strong>Highest Selling Products</strong>
                         </div>
-                        <div class="panel-body overflow-auto" style="height: 500px; overflow-y: auto;">
+                        <div class="panel-body overflow-auto" style="height: 490px; overflow-y: auto;">
                             <table class="table table-sm table-bordered mb-0">
                                 <thead>
                                     <tr>
@@ -131,7 +131,7 @@
                         <div class="panel-heading bg-success text-white text-center py-2">
                             <strong>Latest Sales</strong>
                         </div>
-                        <div class="panel-body overflow-auto" style="height: 500px; overflow-y: auto;">
+                        <div class="panel-body overflow-auto" style="height: 490px; overflow-y: auto;">
                             <table class="table table-sm table-bordered mb-0">
                                 <thead>
                                     <tr>
@@ -145,8 +145,9 @@
                                     @forelse($recent_sales as $recent_sale)
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
-                                            <td><a
-                                                    href="{{ route('sales.edit', $recent_sale->id) }}">{{ $recent_sale->product->name }}</a>
+                                            <td>
+                                                   {{ $recent_sale->product->name }}
+
                                             </td>
                                             <td>{{ \Carbon\Carbon::parse($recent_sale->date)->format('Y-m-d') }}</td>
                                             <td>₱{{ $recent_sale->price }}</td>
@@ -161,21 +162,21 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Recently Added Products -->
                 <div class="col-md-6 col-lg-3 mb-4">
                     <div class="panel panel-warning h-100 d-flex flex-column">
                         <div class="panel-heading bg-warning text-dark text-center py-2">
                             <strong>Recently Added Products</strong>
                         </div>
-                        <div class="panel-body overflow-auto" style="height: 500px;  overflow-y: auto;">
+                        <div class="panel-body overflow-auto" style="height: 490px;  overflow-y: auto;">
                             <div class="list-group">
                                 @forelse($recent_products as $recent_product)
                                     <a class="list-group-item d-flex align-items-center"
-                                        href="{{ route('products.edit', $recent_product->id) }}" style="overflow: visible;">
-                                        <span
+                                       ><span
                                             class="badge bg-warning text-dark me-2 flex-shrink-0">₱{{ $recent_product->sale_price }}</span>
 
-                                        <img src="{{ isset($recent_product->media) ? asset('uploads/products/' . $recent_product->media->file_name) : asset('uploads/products/no_image.png') }}"
+                                        <img src="{{ isset($recent_product->media) ? asset('lib/products/' . $recent_product->media->file_name) : asset('lib/products/') }}"
                                             class="img-thumbnail me-2 flex-shrink-0" width="40" height="40" alt="">
 
                                         <div class="flex-grow-1" style="min-width: 0;">
@@ -197,13 +198,15 @@
                         <div class="panel-heading bg-danger text-white text-center py-2">
                             <strong>Low Stock Items</strong>
                         </div>
-                        <div class="panel-body overflow-auto" style="height: 500px; overflow-y: auto;">
+                        <div class="panel-body overflow-auto" style="height: 490px; overflow-y: auto;">
                             <ul class="list-group">
                                 @if($lowStockProducts->isNotEmpty())
                                     @foreach ($lowStockProducts as $product)
                                         @if($product->quantity > 0) <!-- Ensure it doesn't display products with 0 quantity -->
                                             <li class="list-group-item d-flex justify-content-start align-items-center">
-                                                <span class="badge badge-danger badge-pill me-3">{{ $product->quantity }}</span>
+                                                <span class="badge badge-danger badge-pill me-3">Stock: {{ $product->quantity }}</span>
+                                                <img src="{{ isset($recent_product->media) ? asset('lib/products/' . $recent_product->media->file_name) : asset('lib/products/') }}"
+                                            class="img-thumbnail me-2 flex-shrink-0" width="40" height="40" alt="">
                                                 <div>
                                                     <strong>{{ $product->name }}</strong><br>
                                                     <small class="text-muted">{{ $product->category->name ?? 'N/A' }}</small>
