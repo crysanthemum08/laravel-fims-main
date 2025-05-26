@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div class="panel panel-default" style="width: 120%; max-width: 1500px; margin: 0 auto; overflow-y: auto;">
+        <div class="panel panel-default" style="width: 120%; max-width: 1500px; margin: 0 auto;">
             <div class="panel-heading" style="padding: 20px;">
                 <strong>
                     <span class="glyphicon glyphicon-th"></span>
