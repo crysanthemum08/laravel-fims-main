@@ -41,7 +41,7 @@ This system helps streamline product tracking, sales recording and stock monitor
 
 ---
 
-![Dashboard](images/f1.png)  
+![Dashboard](public/lib/images/f1.png)  
 *Dashboard overview with sales and stock summary*
 
 
