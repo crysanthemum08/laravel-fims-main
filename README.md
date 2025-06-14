@@ -40,9 +40,9 @@ This system helps streamline product tracking, sales recording and stock monitor
 | **Tools**    | Laravel Artisan,    |
 
 ---
-
+Login
 ![Dashboard](public/lib/images/f1.png)  
-*Dashboard overview with sales and stock summary*
+
 
 
 
