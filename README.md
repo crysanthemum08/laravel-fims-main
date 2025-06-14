@@ -40,11 +40,42 @@ This system helps streamline product tracking, sales recording and stock monitor
 | **Tools**    | Laravel Artisan,    |
 
 ---
-Login
+Login 
 ![Dashboard](public/lib/images/f1.png)  
 
+Dashboard
+![Inventory Page](public/lib/images/f2.png)  
 
+Categories
+![Inventory Page](public/lib/images/f3.png)  
 
+Products
+![Inventory Page](public/lib/images/f4.png)  
 
-![Inventory Page](screenshots/inventory.png)  
-*Product listing and management interface*
+Add Product
+![Inventory Page](public/lib/images/f5.png)  
+
+Low Stock Items
+![Inventory Page](public/lib/images/f6.png)  
+
+Expired Products
+![Inventory Page](public/lib/images/f7.png)  
+
+Media Files
+![Inventory Page](public/lib/images/f8.png)  
+
+Sales
+![Inventory Page](public/lib/images/f9.png)  
+
+Sales Report
+![Inventory Page](public/lib/images/f10.png)  
+
+Sales Report Summary
+![Inventory Page](public/lib/images/f11.png) 
+
+Monthly Sales
+![Inventory Page](public/lib/images/f12.png)  
+
+Daily Sales
+![Inventory Page](public/lib/images/f13.png)  
+
